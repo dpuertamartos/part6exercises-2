@@ -2,7 +2,7 @@
   "anecdotes": [
     {
       "content": "Premature optimization is the root of all evil.",
-      "votes": 13,
+      "votes": 14,
       "id": "25170"
     },
     {
@@ -34,6 +34,11 @@
       "content": "Probando",
       "votes": 1,
       "id": "SQ-rCwR"
+    },
+    {
+      "content": "sadad",
+      "votes": 0,
+      "id": "hYmD_Xk"
     }
   ]
 }

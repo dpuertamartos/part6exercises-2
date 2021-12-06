@@ -1,15 +1,20 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addVoteOf } from '../reducers/anecdoteReducer'
+import { changeNotification } from '../reducers/notificationReducer'
 
 
 const AnecdoteList = (props) => {
     const anecdotes = useSelector(state => state.anecdotes)
     const dispatch = useDispatch()
   
-    const vote = (id) => {
+    const vote = (id, content) => {
       console.log('vote', id)
       dispatch(addVoteOf(id))
+      dispatch(changeNotification(`You voted '${content}'`))
+      setTimeout(() => {
+        dispatch(changeNotification(""))
+      }, 5000)
     }
   
     function compare(a,b) {
@@ -31,7 +36,7 @@ const AnecdoteList = (props) => {
             </div>
             <div>
               has {anecdote.votes}
-              <button onClick={() => vote(anecdote.id)}>vote</button>
+              <button onClick={() => vote(anecdote.id,anecdote.content)}>vote</button>
             </div>
           </div>
         )}

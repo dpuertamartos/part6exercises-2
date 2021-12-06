@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { addVoteOf } from '../reducers/anecdoteReducer'
-import { changeThenRemoveNotification } from '../reducers/notificationReducer'
+import { ChangeThenRemoveNotification } from '../reducers/notificationReducer'
 
 
 const AnecdoteList = (props) => {
+    const notification = useSelector(({notifications})=> {return notifications.id})
     const anecdotes = useSelector(({ filter, anecdotes }) => {
         if ( filter === '' ) {
           return anecdotes
@@ -16,7 +17,9 @@ const AnecdoteList = (props) => {
     const vote = (anecdote) => {
       console.log('vote', anecdote.id)
       dispatch(addVoteOf(anecdote))
-      dispatch(changeThenRemoveNotification(`you voted ${anecdote.content}`, 5))
+      console.log('clearing', notification)
+      clearTimeout(notification)
+      dispatch(ChangeThenRemoveNotification(`you voted ${anecdote.content}`, 5))
     }
   
     function compare(a,b) {

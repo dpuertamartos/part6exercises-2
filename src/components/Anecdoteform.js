@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { createAnecdote } from '../reducers/anecdoteReducer'
-import { changeThenRemoveNotification } from '../reducers/notificationReducer'
+import { ChangeThenRemoveNotification } from '../reducers/notificationReducer'
 
 const NewAnecdote = (props) => {
     const addAnecdote = async (event) => {
@@ -24,7 +24,7 @@ const NewAnecdote = (props) => {
 }
 
 const mapDispatchToProps = {
-  createAnecdote, changeThenRemoveNotification
+  createAnecdote, ChangeThenRemoveNotification
 }
 
 const mapStateToProps = (state) => {

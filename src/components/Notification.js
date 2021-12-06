@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const Notification = (props) => {
-  const notification = props.notifications
+  const notification = props.notifications.content
   const style = {
     border: 'solid',
     padding: 10,

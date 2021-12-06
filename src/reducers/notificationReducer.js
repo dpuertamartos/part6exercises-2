@@ -1,33 +1,25 @@
-const notificationReducer = (state = 'INITIAL MESSAGE', action) => {
+const notificationReducer = (state = {content: "", id: 0}, action) => {
     switch (action.type) {
         case 'CHANGE_NOTIFICATION':
-            return action.data
+            return {...state, content: action.data}
         case 'REMOVE_NOTIFICATION':
-            return ''   
+            return {...state, content: ""}  
+        case 'CHANGE_ID':
+            return {...state, id: action.data}      
         default:
             return state
     }
 }
 
-/* export const changeNotification = (notification) => {
-    return {
-      type: 'CHANGE_NOTIFICATION',
-      data: notification
-    }
-  } */
 
-export const changeThenRemoveNotification = (notification, time) => {
+export const ChangeThenRemoveNotification = (notification, time) => {
     const timeMs = time * 1000
     return async dispatch => {
        await dispatch({type: 'CHANGE_NOTIFICATION', data: notification })
-       setTimeout(()=>{dispatch({type: 'REMOVE_NOTIFICATION'})}, timeMs)
+       let id1 = setTimeout(()=>{dispatch({type: 'REMOVE_NOTIFICATION'})}, timeMs)
+       console.log(id1)
+       dispatch({type: 'CHANGE_ID', data: id1})
    }
 }  
-
-/* export const removeNotification = () => {
-    return {
-        type: 'REMOVE_NOTIFICATION'
-    }
-}   */
 
 export default notificationReducer 
